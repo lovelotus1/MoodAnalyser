@@ -2,6 +2,7 @@
 
 namespace MoodAnalyser
 {
+    
     class Program
     {
         public static void Main(string[] args)
@@ -9,4 +10,5 @@ namespace MoodAnalyser
             Console.WriteLine("Welcome To MoodAnalyser Application!");
         }
     }
+
 }
