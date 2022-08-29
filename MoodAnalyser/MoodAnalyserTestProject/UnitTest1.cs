@@ -62,5 +62,19 @@ namespace MoodAnalyserTestProject
             var actual = analyzeMood.Mood();
             Assert.AreEqual(excepted, actual);
         }
+        //UC2 testcase
+        [TestMethod]
+        [TestCategory("Null")]
+        [DataRow(null)]
+        // this will pass in method as a message body;
+        public void GivenNullShouldReturnHappy(string message)
+        {
+            ///Follow AAA strategy
+            ///Arrange , Act and in last Assert
+            AnalyzeMood analyzeMood = new AnalyzeMood(message);
+            string excepted = "happy";
+            var actual = analyzeMood.Mood();
+            Assert.AreEqual(excepted, actual);
+        }
     }
 }
