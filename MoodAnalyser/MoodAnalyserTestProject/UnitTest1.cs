@@ -76,5 +76,39 @@ namespace MoodAnalyserTestProject
             var actual = analyzeMood.Mood();
             Assert.AreEqual(excepted, actual);
         }
+        /// <summary>
+        /// given message should throw moodAnalysisException
+        /// when passing message as Null;
+        /// </summary>
+        [TestMethod]
+        public void Given_Null_Mood_should_ThrowMoodAnalysisCustomException()
+        {
+            try
+            {
+                string message = null;
+                AnalyzeMood analyzeMood = new AnalyzeMood(message);
+                string actual = analyzeMood.Mood();
+            }
+            catch (MoodAnalyserCustomException moodAnalyserCustomException)
+            {
+                Assert.AreEqual("Message can't be Null", moodAnalyserCustomException.Message);//get a Message that describe current Exception
+            }
+        }
+
+        [TestMethod]
+        public void Given_Empty_Mood_should_ThrowMoodAnalysisCustomException()
+        {
+            try
+            {
+                string message = "";
+                AnalyzeMood analyzeMood = new AnalyzeMood(message);
+                string actual = analyzeMood.Mood();
+            }
+            catch (MoodAnalyserCustomException moodAnalyserCustomException)
+            {
+                Assert.AreEqual("Message can't be Empty", moodAnalyserCustomException.Message);//get a Message that describe current Exception
+
+            }
+        }
     }
 }

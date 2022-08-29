@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,17 +60,33 @@ namespace MoodAnalyser
                 {
                     return "happy";
                 }
+                else if (message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserCustomException(ExceptionType.EMPTY_EXCEPTION, "Message can't be Empty");
+                }
                 else
                 {
                     return "sad";
                 }
             }
-            catch (NullReferenceException exception)
+            catch (NullReferenceException)
             {
-                Console.WriteLine(exception.Message);
-                return "happy";
+                throw new MoodAnalyserCustomException(ExceptionType.NULL_EXCEPTION, "Message can't be Null");
+                // Console.WriteLine(exception.Message);
+                // return "happy";  
             }
 
+        }
+    }
+
+    [Serializable]
+    public class MoodAnalyserCustomException : Exception
+    {
+        //enum ExceptionType;
+        public ExceptionType type;
+        public MoodAnalyserCustomException(ExceptionType type, string message) : base(message)
+        {
+            this.type = type;
         }
     }
 }
